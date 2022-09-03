@@ -40,5 +40,6 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo "\n========shhhhhh==========\n"
-          ssh root@42.193.219.174
+          ssh -tt root@42.193.219.174
           ls
+          exit

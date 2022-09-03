@@ -8,7 +8,9 @@ on:
     branches: [ "master" ]
 
 # 在仓库内定义了三个环境变量: GUANGDONG_PRIVATE_KEY  MY_DOMAIN  MY_USER
-
+env:
+  MY_DOMAIN: 42.193.219.174
+  MY_USER: root
 jobs:
   # This workflow contains a single job called "build"
   checkout:
@@ -27,7 +29,7 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.GUONEI_KEY }}"
           mkdir -p ~/.ssh
-          ssh-keyscan 42.193.219.174 >> ~/.ssh/known_hosts
+          ssh-keyscan $MY_DOMAIN >> ~/.ssh/known_hosts
 
       - name: fstp install
         run: |
@@ -40,9 +42,9 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo "\n================================\n"
-          ssh root@42.193.219.174 "rm -rf /root/kkkk && mkdir /root/kkkk && ls"
-          scp aaa.tar.gz root@42.193.219.174:/root/kkkk
-          ssh root@42.193.219.174 "cd /root/kkkk/ && tar -zxvf aaa.tar.gz  && rm -rf aaa.tar.gz "
+          ssh $MY_USER@$MY_DOMAIN "rm -rf /root/kkkk && mkdir /root/kkkk && ls"
+          scp aaa.tar.gz $MY_USER@$MY_DOMAIN:/root/kkkk
+          ssh $MY_USER@$MY_DOMAIN "cd /root/kkkk/ && tar -zxvf aaa.tar.gz  && rm -rf aaa.tar.gz "
 
 
 

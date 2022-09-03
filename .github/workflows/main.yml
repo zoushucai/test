@@ -20,15 +20,12 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Setup SSH Keys and known_hosts
+      - name: tar.gz , Setup SSH Keys and known_hosts
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo "\n==================\n"
-          pwd
-          ls
           tar -zcvf aaa.tar.gz ./*
-          ls
           echo "\n=====成功创建=====\n"
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.GUONEI_KEY }}"
@@ -40,9 +37,10 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          echo "\n========shhhhhh==========\n"
+          echo "\n================================\n"
+          ssh root@42.193.219.174 "rm -rf /root/kkkk && mkdir /root/kkkk && ls"
           scp aaa.tar.gz root@42.193.219.174:/root/kkkk
-          ssh root@42.193.219.174 "cd /root/kkkk && shopt -s extglob && rm -rf !(aaa.tar.gz) && tar -zxvf aaa.tar.gz  && rm -rf aaa.tar.gz "
+          ssh root@42.193.219.174 "cd /root/kkkk/ && tar -zxvf aaa.tar.gz  && rm -rf aaa.tar.gz "
 
 
 

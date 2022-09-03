@@ -45,7 +45,7 @@ jobs:
           echo "\n========shhhhhh==========\n"
           ssh root@42.193.219.174 "rm -rf /root/kkkk && mkdir /root/kkkk && ls"
           scp aaa.tar.gz root@42.193.219.174:/root/kkkk
-          ssh root@42.193.219.174 "cd /root/kkkk/ && tar -zxvf aaa.tar.gz --delete"
+          ssh root@42.193.219.174 "cd /root/kkkk/ && tar -zxvf aaa.tar.gz  && rm -rf aaa.tar.gz "
 
 
 

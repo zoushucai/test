@@ -11,6 +11,7 @@ on:
 env:
   MY_DOMAIN: 42.193.219.174
   MY_USER: root
+  remote_dir: /root/kkkk
 jobs:
   # This workflow contains a single job called "build"
   checkout:
@@ -35,16 +36,16 @@ jobs:
         run: |
           sudo apt install lftp 
           echo "\n==================\n"
-          tar -zcvf aaa.tar.gz ./*
+          tar -zcf aaa.tar.gz ./*
           echo "\n=====成功创建=====\n"
       - name: ssh connect
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo "\n================================\n"
-          ssh $MY_USER@$MY_DOMAIN "rm -rf /root/kkkk && mkdir /root/kkkk && ls"
-          scp aaa.tar.gz $MY_USER@$MY_DOMAIN:/root/kkkk
-          ssh $MY_USER@$MY_DOMAIN "cd /root/kkkk/ && tar -zxvf aaa.tar.gz  && rm -rf aaa.tar.gz "
+          ssh $MY_USER@$MY_DOMAIN "rm -rf $remote_dir && mkdir $remote_dir "
+          scp aaa.tar.gz $MY_USER@$MY_DOMAIN:$remote_dir
+          ssh $MY_USER@$MY_DOMAIN "cd $remote_dir && tar -zxf aaa.tar.gz  && rm -rf aaa.tar.gz "
 
 
 

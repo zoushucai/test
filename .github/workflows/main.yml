@@ -27,7 +27,7 @@ jobs:
           echo "\n==================\n"
           pwd
           ls
-          tar zcvf aaa.tar.gz ./*
+          tar -zcvf aaa.tar.gz ./*
           ls
           echo "\n=====成功创建=====\n"
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
@@ -44,4 +44,4 @@ jobs:
         run: |
           echo "\n========shhhhhh==========\n"
           scp aaa.tar.gz root@42.193.219.174:/root/kkkk 
-        #ssh root@42.193.219.174 "ls && exit"
+          ssh root@42.193.219.174 "cd /root/kkkk && tar -zxvf aaa.tar.gz"

@@ -35,9 +35,13 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan 42.193.219.174 >> ~/.ssh/known_hosts
           echo "创建成功"
+      - name: fstp connect
+        run: |
+          sudo apt install lftp 
       - name: ssh connect
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo "\n========shhhhhh==========\n"
-          ssh root@42.193.219.174 "ls && exit"
+          scp aaa.tar.gz root@42.193.219.174:/root/kkkk 
+        #ssh root@42.193.219.174 "ls && exit"

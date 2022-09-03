@@ -21,6 +21,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Setup SSH Keys and known_hosts
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |

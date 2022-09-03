@@ -1,0 +1,10 @@
+---
+title: "开学寄语"
+author: "zsc"
+date: "2022-08-31"
+categories: ["22级高一5班"]
+image: "image.jpg"
+---
+
+
+希望能够在侨中开心的度过每一天.

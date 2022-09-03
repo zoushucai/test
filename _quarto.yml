@@ -1,0 +1,66 @@
+project:
+  type: website
+  output-dir: public
+  resources: 
+    - "static/"
+  # pre-render: "static/prepare.R"
+  #post-render: "static/checkhtml.R"
+
+
+execute:
+  freeze: auto
+favicon: "static/favicon.png"
+filters:
+   - grouped-tabsets
+   - lightbox
+lightbox: auto
+website:
+  title: "年少青春当有梦"
+  image: "static/favicon.png"
+  open-graph: true
+  navbar:
+    logo: "static/logo.png"
+    background: primary
+    search: true
+    right:
+      - text: "留言板"
+        href: posts/aliuyanban.qmd
+      - text: About
+        href: about.qmd
+  sidebar:
+    style: "docked"
+    search: true
+    
+format:
+  html:
+    lang: zh
+    smooth-scroll: true 
+    link-external-icon: false
+    link-external-newwindow: false
+    link-external-filter: '^(?:http:|https:)\/\/class\.zsccy\.top\/'
+    code-copy: true
+    code-fold: true
+    code-summary: "Show the code"
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    code-link: true
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.css  
+    #include-after-body: "static/footer_valine.html"
+  gfm:
+    html-math-method: webtex
+
+
+
+editor: source
+
+
+
+
+
+
+
+
+

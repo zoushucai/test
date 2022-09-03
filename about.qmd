@@ -1,0 +1,12 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+---
+
+
+事半功倍,留下你的脚印
+
+
+

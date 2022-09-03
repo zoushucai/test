@@ -1,0 +1,38 @@
+  <!-- id 将作为查询条件 -->
+   
+  <br>
+  <p> {{< meta title >}}  {{< meta website.title >}} </p>
+     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <!-- <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次;
+    </span>
+    <span id="busuanzi_container_site_uv" style="display: inline;">
+        本站访客数<span id="busuanzi_value_site_uv"></span>人次;
+    </span> -->
+    <span id="busuanzi_container_page_pv">
+        本文总阅读量<span id="busuanzi_value_page_pv"></span>次;
+    </span>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div id="vcomments"></div>
+  <br>
+  <!--Leancloud 操作库:-->
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <!--Valine 的核心代码库:-->
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'eLF18mUvDFD8fJDQfaOdQvK6-gzGzoHsz',
+        appKey: '6KG7ghpxFsOZKUGwAs3tw0Ah',
+        lang:'zh-CN',
+        notify: false, 
+        verify: false,
+        avatar:'identicon', 
+        placeholder: '说点什么吧...',
+        visitor: true
+    });
+  </script>

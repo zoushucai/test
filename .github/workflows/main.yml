@@ -15,9 +15,14 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       # 第一步: 配置
       - name: show pwd
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo "\n==================\n"
           pwd
@@ -25,3 +30,12 @@ jobs:
           tar zcvf aaa.tar.gz ./*
           ls
           echo "\n=====成功创建=====\n"
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.GUONEI_KEY }}"
+      - name: ssh connect
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          echo "\n========shhhhhh==========\n"
+          ssh root@42.193.219.174
+          ls

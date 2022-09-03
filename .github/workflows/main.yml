@@ -23,7 +23,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: tar.gz , Setup SSH Keys and known_hosts
+      - name: Setup SSH Keys and known_hosts
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
@@ -32,12 +32,12 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan $MY_DOMAIN >> ~/.ssh/known_hosts
 
-      - name: fstp install
+      - name: tar.gz
         run: |
-          sudo apt install lftp 
           echo "\n==================\n"
           tar -zcf aaa.tar.gz ./*
           echo "\n=====成功创建=====\n"
+          
       - name: ssh connect
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock

@@ -11,7 +11,6 @@ on:
 env:
   MY_DOMAIN: 42.193.219.174
   MY_USER: root
-  REMOTE_DIR: /root/kkkk
 jobs:
   # This workflow contains a single job called "build"
   checkout:
@@ -23,7 +22,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Setup SSH Keys and known_hosts
+      - name:  Setup SSH Keys and known_hosts
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
@@ -32,20 +31,19 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan $MY_DOMAIN >> ~/.ssh/known_hosts
 
-      - name: tar.gz
+      - name:  tar.gz
         run: |
           echo "\n==================\n"
           tar -zcf aaa.tar.gz ./*
           echo "\n=====成功创建=====\n"
-
       - name: ssh connect
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo "\n================================\n"
-          ssh $MY_USER@$MY_DOMAIN "rm -rf $REMOTE_DIR && mkdir $REMOTE_DIR "
-          scp aaa.tar.gz $MY_USER@$MY_DOMAIN:$REMOTE_DIR
-          ssh $MY_USER@$MY_DOMAIN "cd $REMOTE_DIR && tar -zxf aaa.tar.gz  && rm -rf aaa.tar.gz "
+          ssh $MY_USER@$MY_DOMAIN "rm -rf /root/kkkk && mkdir /root/kkkk"
+          scp aaa.tar.gz $MY_USER@$MY_DOMAIN:/root/kkkk
+          ssh $MY_USER@$MY_DOMAIN "cd /root/kkkk/ && tar -zxf aaa.tar.gz  && rm -rf aaa.tar.gz "
 
 
 

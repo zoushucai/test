@@ -43,8 +43,9 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           echo "\n========shhhhhh==========\n"
-          scp aaa.tar.gz root@42.193.219.174:/root/kkkk 
           ssh root@42.193.219.174 "rm -rf /root/kkkk && mkdir /root/kkkk/ "
+          scp aaa.tar.gz root@42.193.219.174:/root/kkkk 
+          ssh root@42.193.219.174 "cd /root/kkkk/ && tar -zxcf aaa.tar.gz  && rm -rf aaa.tar.gz"
 
 
 

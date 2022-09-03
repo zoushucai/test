@@ -16,11 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # 第一步: 配置
-      - name: show pwd
         with:
           persist-credentials: false
           fetch-depth: 0
+
       - name: Setup SSH Keys and known_hosts
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -33,6 +32,9 @@ jobs:
           echo "\n=====成功创建=====\n"
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.GUONEI_KEY }}"
+          mkdir -p ~/.ssh
+          ssh-keyscan 42.193.219.174 >> ~/.ssh/known_hosts
+          echo "创建成功"
       - name: ssh connect
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
